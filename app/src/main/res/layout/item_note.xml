@@ -8,10 +8,11 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:elevation="12dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/material_component_cards_left_and_right_padding"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_height="match_parent">
 
         <TextView
@@ -20,10 +21,11 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:id="@+id/note_title"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Titolo"/>
 
         <TextView
+            android:paddingTop="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/note_body"
@@ -31,8 +33,5 @@
             android:textColor="@color/colorTextBody"
             android:text="oioioioioioio"/>
     </LinearLayout>
-
-
-
 
 </android.support.v7.widget.CardView>

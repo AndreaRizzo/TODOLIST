@@ -20,6 +20,7 @@ public class EditNoteActivity extends AppCompatActivity {
     EditText titleEditText, bodyEditText;
 
     Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +37,18 @@ public class EditNoteActivity extends AppCompatActivity {
         bodyEditText = (EditText) findViewById(R.id.body_note_et);
 
 
-
         intent = getIntent();
 
 
-        if(intent != null){
-            if(intent.getIntExtra(MainActivity.ACTION_MODE,0) == MainActivity.REQUEST_EDIT){
+        if (intent != null) {
+            if (intent.getIntExtra(MainActivity.ACTION_MODE, 0) == MainActivity.EDIT_MODE) {
                 titleEditText.setText(intent.getStringExtra(MainActivity.NOTE_TITLE_KEY));
+                bodyEditText.setText(intent.getStringExtra(MainActivity.NOTE_BODY_KEY));
+            } else if (intent.getStringExtra(MainActivity.NOTE_BODY_KEY) != null) {
                 bodyEditText.setText(intent.getStringExtra(MainActivity.NOTE_BODY_KEY));
 
             }
+
         }
 
     }
@@ -66,7 +69,7 @@ public class EditNoteActivity extends AppCompatActivity {
             confirmNote();
             return true;
         }
-        if(id == android.R.id.home){
+        if (id == android.R.id.home) {
             setResult(Activity.RESULT_CANCELED);
             finish();
         }
@@ -76,9 +79,9 @@ public class EditNoteActivity extends AppCompatActivity {
 
     private void confirmNote() {
         Intent i = new Intent();
-        i.putExtra(MainActivity.NOTE_TITLE_KEY,titleEditText.getText().toString());
-        i.putExtra(MainActivity.NOTE_BODY_KEY,bodyEditText.getText().toString());
-        setResult(Activity.RESULT_OK,i);
+        i.putExtra(MainActivity.NOTE_TITLE_KEY, titleEditText.getText().toString());
+        i.putExtra(MainActivity.NOTE_BODY_KEY, bodyEditText.getText().toString());
+        setResult(Activity.RESULT_OK, i);
         finish();
 
     }

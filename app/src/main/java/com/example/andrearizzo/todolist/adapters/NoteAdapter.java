@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import com.example.andrearizzo.todolist.R;
 import com.example.andrearizzo.todolist.activities.MainActivity;
@@ -20,7 +21,7 @@ import com.example.andrearizzo.todolist.models.Note;
  */
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
-    Context context;
+    private Context context;
     ArrayList<Note> notes = new ArrayList<>();
     private int position;
 
@@ -42,26 +43,21 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public int getPosition() {
         return position;
     }
-    public void setPosition(int position) {
+    private void setPosition(int position) {
         this.position = position;
     }
 
     public void updateNote(Note note, int position) {
         notes.set(position,note);
+        notifyItemChanged(position);
     }
 
     @Override
-    public void onBindViewHolder(NoteViewHolder holder, final int position) {
+    public void onBindViewHolder(final NoteViewHolder holder, int position) {
         Note note = notes.get(position);
         holder.noteTitle.setText(note.getTitle());
         holder.noteBody.setText(note.getBody());
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                setPosition(position);
-                return true;
-            }
-        });
+
     }
 
     @Override
@@ -71,6 +67,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     public void removeNote(int position) {
         notes.remove(position);
+        notifyItemRemoved(position);
 
     }
 
@@ -79,10 +76,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         return notes.get(position);
     }
 
+    public void setData(ArrayList<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
 
 
-
-    class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView noteTitle, noteBody;
 
         NoteViewHolder(View itemView) {
@@ -90,13 +90,23 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             noteTitle = (TextView) itemView.findViewById(R.id.note_title);
             noteBody = (TextView) itemView.findViewById(R.id.note_body);
             itemView.setOnCreateContextMenuListener(this);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    setPosition(getAdapterPosition());
+                    return false;
+                }
+            });
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            MenuInflater inflater = ((MainActivity) context).getMenuInflater();
+            MenuInflater inflater = ((MainActivity)context).getMenuInflater();
             inflater.inflate(R.menu.menu_note, contextMenu);
         }
+
+
+
 
 
     }

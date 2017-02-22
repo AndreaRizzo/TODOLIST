@@ -2,36 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:background="@drawable/back"
+    android:layout_height="match_parent"
+    android:weightSum="1">
     <include layout="@layout/toolbar"/>
 
     <LinearLayout
-
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_margin="16dp"
-        android:background="@color/colorPrimary"
-
+        android:background="@color/colorBody"
         android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:hint="Title "
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
             android:background="@android:color/transparent"
-            android:id="@+id/title_note_et"
-            />
+            android:id="@+id/title_note_et" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:background="@color/colorBody"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.50">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:textSize="18dp"
             android:textColor="@color/colorTextBody"
-            android:textStyle="italic"
             android:hint="Description"
             android:background="@android:color/transparent"
             android:id="@+id/body_note_et"
