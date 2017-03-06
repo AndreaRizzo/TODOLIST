@@ -8,53 +8,53 @@ import java.util.Date;
 
 public class Note  {
 
-    private String title;
-    private String body;
-    private Status status;
-    private Date createdAt,modifiedAt,dueDate;
-    private int id;
+        private String title;
+        private String body;
+        private Status status;
+        private Date createdAt,modifiedAt,dueDate;
+        private int id;
 
-    public String getTitle() {
-        return title;
-    }
+        public String getTitle() {
+            return title;
+        }
 
-    public String getBody() {
-        return body;
-    }
+        public String getBody() {
+            return body;
+        }
 
-    public Status getStatus() {
-        return status;
-    }
+        public Status getStatus() {
+            return status;
+        }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+        public Date getCreatedAt() {
+            return createdAt;
+        }
 
-    public Date getModifiedAt() {
-        return modifiedAt;
-    }
+        public Date getModifiedAt() {
+            return modifiedAt;
+        }
 
-    public Date getDueDate() {
-        return dueDate;
-    }
+        public Date getDueDate() {
+            return dueDate;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+        public void setBody(String body) {
+            this.body = body;
+        }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+        public void setStatus(Status status) {
+            this.status = status;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public int getId() {
-        return id;
+        public int getId() {
+            return id;
+        }
     }
-}
