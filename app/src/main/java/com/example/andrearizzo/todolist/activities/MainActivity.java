@@ -186,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
@@ -207,6 +206,15 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra(NOTE_TITLE_KEY, editingNote.getTitle());
                 i.putExtra(NOTE_BODY_KEY, editingNote.getBody());
                 startActivityForResult(i, REQUEST_EDIT);
+                break;
+
+            case R.id.action_share:
+                int posizione = adapter.getPosition();
+                Intent d= new Intent();
+                d.setAction(Intent.ACTION_SEND);
+                d.putExtra(Intent.EXTRA_TEXT, adapter.getNote(posizione).getBody());
+                d.setType("text/plain");
+                startActivity(d);
                 break;
 
         }

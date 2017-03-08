@@ -3,14 +3,18 @@ package com.example.andrearizzo.todolist.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.andrearizzo.todolist.R;
+import com.example.andrearizzo.todolist.database.Databasehandler;
 
 /**
  * Created by Andrea Rizzo on 20/02/2017.
@@ -20,6 +24,10 @@ public class EditNoteActivity extends AppCompatActivity {
     EditText titleEditText, bodyEditText;
 
     Intent intent;
+
+    Databasehandler dbHandler;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +44,6 @@ public class EditNoteActivity extends AppCompatActivity {
         titleEditText = (EditText) findViewById(R.id.title_note_et);
         bodyEditText = (EditText) findViewById(R.id.body_note_et);
 
-
         intent = getIntent();
 
 
@@ -46,11 +53,21 @@ public class EditNoteActivity extends AppCompatActivity {
                 bodyEditText.setText(intent.getStringExtra(MainActivity.NOTE_BODY_KEY));
             } else if (intent.getStringExtra(MainActivity.NOTE_BODY_KEY) != null) {
                 bodyEditText.setText(intent.getStringExtra(MainActivity.NOTE_BODY_KEY));
-
             }
-
         }
 
+        ImageButton fab = (ImageButton) findViewById(R.id.action_share_mod);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent d= new Intent();
+                String body = intent.getStringExtra(MainActivity.NOTE_BODY_KEY);
+                d.setAction(Intent.ACTION_SEND);
+                d.putExtra(Intent.EXTRA_TEXT, body);
+                d.setType("text/plain");
+                startActivity(d);
+            }
+        });
     }
 
 
@@ -85,4 +102,7 @@ public class EditNoteActivity extends AppCompatActivity {
         finish();
 
     }
+
+
+
 }

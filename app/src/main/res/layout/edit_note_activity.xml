@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical">
     <include layout="@layout/toolbar"/>
 
 
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:hint="Titolo nota"
-            android:textColorHint="@color/colorPrimaryText"
+            android:textColorHint="@color/colorTextBody"
+            android:textColor="@color/colorPrimaryText"
             android:textStyle="normal"
             android:background="@android:color/transparent"
             android:id="@+id/title_note_et" />
@@ -34,17 +36,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:gravity="top"
         android:layout_margin="10dp"
-        android:layout_gravity="end"
+        android:layout_gravity="center"
         android:layout_height="97dp">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="132dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:hint="Che cosa hai in mente?"
             android:textStyle="normal"
-            android:textColorHint="@color/colorPrimaryText"
+            android:textColorHint="@color/colorTextBody"
+            android:textColor="@color/colorPrimaryText"
             android:gravity="top"
             android:background="@android:color/transparent"
             android:id="@+id/body_note_et" />
@@ -55,24 +59,52 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/view2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:layout_weight="0.39">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="Share"/>
+
+        <ImageButton
+            android:id="@+id/action_share_mod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimarySfondo"
+            android:src="@drawable/share_variant" />
+
+    </LinearLayout>
 
     <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical">
 
     <CalendarView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:id="@+id/datePicker">
     </CalendarView>
 
 </LinearLayout>
 
-    </LinearLayout>
+
+
+</LinearLayout>
 
 
